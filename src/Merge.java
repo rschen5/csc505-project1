@@ -65,6 +65,17 @@ public class Merge {
       durationms = duration;
       System.out.println("Time to sort input: " + durationms + " nanoseconds.");
       
+      try {
+        for (int i = 0; i < lines.length - 1; i++) {
+          if (compare(lines[i], lines[i + 1]) > 0) {
+            System.out.println("Line " + i + " is not sorted correctly");
+          }
+        }
+      } catch (ParseException pe) {
+        System.out.println("Caught ParseException during sorted output");
+        System.exit(1);
+      }
+      
       writeOutput(out);
       out.close();
     } catch (ParseException pe) {
