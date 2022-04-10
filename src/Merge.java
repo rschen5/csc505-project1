@@ -116,17 +116,22 @@ public class Merge {
     int leftIndex = 0;
     int rightIndex = 0;
 
-    while (leftIndex + rightIndex < dataStrings.length) {
-      if (rightIndex == right.length
-          || (leftIndex < left.length && compare(left[leftIndex], right[rightIndex]) < 0)) {
-        dataStrings[leftIndex + rightIndex] = left[leftIndex++];
-      } else {
-        dataStrings[leftIndex + rightIndex] = right[rightIndex++];
+    try {
+      while (leftIndex + rightIndex < dataStrings.length) {
+        if (rightIndex == right.length
+            || (leftIndex < left.length && compare(left[leftIndex], right[rightIndex]) < 0)) {
+          dataStrings[leftIndex + rightIndex] = left[leftIndex++];
+        } else {
+          dataStrings[leftIndex + rightIndex] = right[rightIndex++];
+        }
       }
+    } catch (ParseException pe) {
+      System.out.println("Caught ParseException during sorting");
+      System.exit(1);
     }
   }
 
-  private static int compare(String first, String second) {
+  private static int compare(String first, String second) throws ParseException {
     Scanner firstLine = new Scanner(first);
     String firstDateStr = firstLine.next();
     LocalDateTime firstKey = getDate(firstDateStr);
