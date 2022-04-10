@@ -10,37 +10,42 @@ public class Merge {
   public static final int OUTFILE = 1;
   public static int lineCount = 0;
   public static String[] lines;
+  public static String timeRegex = "[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]T[0-9][0-9]:" +
+                                   "[0-9][0-9]:[0-9][0-9]-[0-9][0-9]:[0-9][0-9](.*)";
   
   public static void main(String[] args) {
     if (args.length != 2) {
-        System.out.println("Usage: java -cp bin Merge infile outfile");
-        System.exit(1);
+      System.out.println("Usage: java -cp bin Merge infile outfile");
+      System.exit(1);
     }
     
     Scanner in = null;
     PrintWriter out = null;
     
     try {
-        in = new Scanner(new FileInputStream(args[INFILE]));
-        while(in.hasNextLine()) {
-          in.nextLine();
+      in = new Scanner(new FileInputStream(args[INFILE]));
+      String inLine;
+      while(in.hasNextLine()) {
+        inLine = in.nextLine();
+        if (inLine.matches(timeRegex)) {
           lineCount++;
         }
-        in = new Scanner(new FileInputStream(args[INFILE]));
+      }
+      in = new Scanner(new FileInputStream(args[INFILE]));
     } 
     catch (FileNotFoundException e) {
-        System.out.println("Unable to access input file: " + args[INFILE]);
-        System.exit(1);
+      System.out.println("Unable to access input file: " + args[INFILE]);
+      System.exit(1);
     }
 
     Scanner scnr = new Scanner(System.in);
     Path path = Path.of(args[OUTFILE]);
     try {
-        out = new PrintWriter(new FileOutputStream(args[OUTFILE]));
+      out = new PrintWriter(new FileOutputStream(args[OUTFILE]));
     } 
     catch (FileNotFoundException e) {
-        System.out.println("Cannot create output file");
-        System.exit(1);
+      System.out.println("Cannot create output file");
+      System.exit(1);
     }
     
     try {
@@ -69,8 +74,14 @@ public class Merge {
   
   public static void readInput(Scanner in) {
     lines = new String[lineCount];
+    String inLine;
     for(int i = 0; i < lineCount; i++) {
-      lines[i] = in.nextLine();
+      inLine = in.nextLine();
+      if (inLine.matches(timeRegex)) {
+        lines[i] = inLine;
+      } else {
+        i--;
+      }
     }
   }
   
