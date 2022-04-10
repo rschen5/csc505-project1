@@ -11,6 +11,8 @@ public class TimSort {
   public static int lineCount = 0;
   public static String[] lines;
   public static int MIN_MERGE = 32;
+  public static String timeRegex = "[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]T[0-9][0-9]:" +
+  "[0-9][0-9]:[0-9][0-9]-[0-9][0-9]:[0-9][0-9](.*)";
   
   public static void main(String[] args) {
     if (args.length != 2) {
@@ -22,16 +24,20 @@ public class TimSort {
     PrintWriter out = null;
     
     try {
-        in = new Scanner(new FileInputStream(args[INFILE]));
-        while(in.hasNextLine()) {
-          in.nextLine();
+      in = new Scanner(new FileInputStream(args[INFILE]));
+      String inLine;
+      while(in.hasNextLine()) {
+        inLine = in.nextLine();
+        if (inLine.matches(timeRegex)) {
           lineCount++;
         }
-        in = new Scanner(new FileInputStream(args[INFILE]));
+      }
+      System.out.println("Lines: " + lineCount);
+      in = new Scanner(new FileInputStream(args[INFILE]));
     } 
     catch (FileNotFoundException e) {
-        System.out.println("Unable to access input file: " + args[INFILE]);
-        System.exit(1);
+      System.out.println("Unable to access input file: " + args[INFILE]);
+      System.exit(1);
     }
 
     Scanner scnr = new Scanner(System.in);
@@ -71,8 +77,14 @@ public class TimSort {
   
   public static void readInput(Scanner in) {
     lines = new String[lineCount];
+    String inLine;
     for(int i = 0; i < lineCount; i++) {
-      lines[i] = in.nextLine();
+      inLine = in.nextLine();
+      if (inLine.matches(timeRegex)) {
+        lines[i] = inLine;
+      } else {
+        i--;
+      }
     }
   }
   
