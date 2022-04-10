@@ -2,7 +2,7 @@
 
 ## Build Solution
 
-The `project.sh` file contains all code to build our solution. Please note that it requires the `Project1` folder from [Dr. Jenning's data files repository](https://github.ncsu.edu/jajenni3/csc505-spring-2022) to first be placed in the same directory.
+The `project.sh` file contains all code to build our solution. Please note that it requires the `Project1` folder from [Dr. Jenning's data files repository](https://github.ncsu.edu/jajenni3/csc505-spring-2022) to first be placed in the same directory (with files unzipped).
 
 To build our solution, run the following in a bash session:
 
