@@ -31,6 +31,7 @@ public class Merge {
           lineCount++;
         }
       }
+      System.out.println("Lines: " + lineCount);
       in = new Scanner(new FileInputStream(args[INFILE]));
     } 
     catch (FileNotFoundException e) {
