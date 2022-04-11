@@ -5,6 +5,10 @@ import java.text.*;
 import java.time.*;
 
 public class TimSort {
+
+  /**
+   * Timsort implementation and helper methods adapted from: https://www.geeksforgeeks.org/timsort/
+   */
   
   public static final int INFILE = 0;
   public static final int OUTFILE = 1;
@@ -67,6 +71,17 @@ public class TimSort {
       durationms = duration;
       System.out.println("Time to sort input: " + durationms + " nanoseconds.");
       
+      try {
+        for (int i = 0; i < lines.length - 1; i++) {
+          if (compare(lines[i], lines[i + 1]) > 0) {
+            System.out.println("Line " + i + " is not sorted correctly");
+          }
+        }
+      } catch (Exception pe) {
+        System.out.println("Caught ParseException during sorted output");
+        System.exit(1);
+      }
+
       writeOutput(out);
       out.close();
     } catch (Exception pe) {
