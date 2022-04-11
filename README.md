@@ -1,5 +1,7 @@
 # csc505-project1
 
+We tested our code on the VCL using the "Eos Linux Lab Computer" environment.
+
 ## Build Solution
 
 The `project.sh` file contains all code to build our solution. Please note that it requires the `Project1` folder from [Dr. Jenning's data files repository](https://github.ncsu.edu/jajenni3/csc505-spring-2022) to first be placed in the same directory (with files unzipped).
