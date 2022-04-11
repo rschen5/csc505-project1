@@ -12,3 +12,6 @@ javac -d bin src/*.java
 
 #Give sorting scripts permission to run
 chmod +x src/*.sh
+
+#Remove invalid file endings
+sed -i -e 's/\r$//' src/*.sh
