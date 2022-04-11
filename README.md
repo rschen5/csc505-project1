@@ -45,3 +45,7 @@ Timsort:
 ```bash
 ./src/timsort.sh <data set>
 ```
+
+## Runtime Output
+
+We have included files showing the raw output for our execution runs for some of the sorting algorithms in the `raw-files` folder. We did our data analysis in Excel, so we copied over our runtime data to the spreadsheets linked in Question 13 of our project report.
