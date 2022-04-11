@@ -15,6 +15,8 @@ chmod +x project.sh
 ./project.sh
 ```
 
+Note: if you need to re-run `project.sh`, you will first need to remove the `outputs` folder that is created by `projects.sh`.
+
 ## Run Solution
 
 The `src/` folder contains three different scripts for running the sorting algorithms:
