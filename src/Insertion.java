@@ -68,6 +68,17 @@ public class Insertion {
       durationms = duration;
       System.out.println("Time to sort input: " + durationms + " nanoseconds.");
       
+      try {
+        for (int i = 0; i < lines.length - 1; i++) {
+          if (compare(lines[i], lines[i + 1]) > 0) {
+            System.out.println("Line " + i + " is not sorted correctly");
+          }
+        }
+      } catch (Exception pe) {
+        System.out.println("Caught ParseException during sorted output");
+        System.exit(1);
+      }
+
       writeOutput(out);
       out.close();
     } catch (ParseException pe) {
@@ -130,5 +141,19 @@ public class Insertion {
     for(int i = 0; i < lineCount; i++) {
       out.println(lines[i]);
     }
+  }
+
+  private static int compare(String first, String second) throws ParseException {
+    Scanner firstLine = new Scanner(first);
+    String firstDateStr = firstLine.next();
+    LocalDateTime firstKey = getDate(firstDateStr);
+    firstLine.close();
+
+    Scanner secondLine = new Scanner(second);
+    String secondDateStr = secondLine.next();
+    LocalDateTime secondKey = getDate(secondDateStr);
+    secondLine.close();
+
+    return(firstKey.compareTo(secondKey));
   }
 }
