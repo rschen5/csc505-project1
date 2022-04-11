@@ -1,5 +1,7 @@
 # csc505-project1
 
+Team members: Rachel Chen (rschen), Manali Shirsekar (mnshirse), Bonnie Chhatrala (bschhatr)
+
 We tested our code on the VCL using the "Eos Linux Lab Computer" environment.
 
 ## Build Solution
